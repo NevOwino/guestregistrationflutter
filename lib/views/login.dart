@@ -14,14 +14,10 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Grading Application'),
+        title: Text('Guest Registration Portal'),
         backgroundColor: Colors.blueAccent,
         foregroundColor: Colors.white,
         centerTitle: true,
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.settings)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.logout)),
-        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -31,7 +27,7 @@ class _LoginState extends State<Login> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('assets/logo.png', height: 200, width: 400),
+                  Image.asset('assets/daystarlogo.png', height: 200, width: 400),
                 ],
               ),
 
@@ -39,7 +35,7 @@ class _LoginState extends State<Login> {
 
               Row(
                 children: [
-                  Text('Username', style: TextStyle(color: Colors.deepOrange)),
+                  Text('Email', style: TextStyle(color: Colors.deepOrange)),
                 ],
               ),
 
@@ -70,7 +66,7 @@ class _LoginState extends State<Login> {
 
               MaterialButton(
                 onPressed: () {
-                  Get.toNamed('/home');
+                  Get.toNamed('/home');//change to navigate to dashboard screen
                 },
                 color: Colors.blueAccent,
                 minWidth: 200,
@@ -84,7 +80,7 @@ class _LoginState extends State<Login> {
                 children: [
                   GestureDetector(
                     child: Text(
-                      'Not Registered? Sign Up',
+                      'Dont have an account? Register',
                       style: TextStyle(color: Colors.blueAccent),
                     ),
                     onTap: () {
