@@ -8,7 +8,7 @@ class Registration extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Guest Registration'),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.orangeAccent,
         foregroundColor: Colors.white,
         centerTitle: true,
       ),
@@ -20,7 +20,7 @@ class Registration extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('assets/daystarlogo.png', height: 200, width: 400),
+                  Image.asset('assets/guestlogo.jpg', height: 200, width: 400),
                 ],
               ),
 
@@ -49,7 +49,7 @@ class Registration extends StatelessWidget {
 
               TextField(
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.person),
+                  prefixIcon: Icon(Icons.email),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -64,7 +64,22 @@ class Registration extends StatelessWidget {
 
               TextField(
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.person),
+                  prefixIcon: Icon(Icons.phone),
+                  border: OutlineInputBorder(),
+                ),
+              ),
+
+              SizedBox(height: 20),
+
+              Row(
+                children: [
+                  Text('National Id/ Passport Number', style: TextStyle(color: Colors.deepOrange)),
+                ],
+              ),
+
+              TextField(
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.badge),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -88,13 +103,29 @@ class Registration extends StatelessWidget {
 
               SizedBox(height: 20),
 
+               Row(
+                children: [
+                  Text('Confirm Password', style: TextStyle(color: Colors.deepOrange)),
+                ],
+              ),
+
+              TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.lock_outline),
+                  border: OutlineInputBorder(),
+                ),
+              ),
+
+              SizedBox(height: 20),
+
               MaterialButton(
                 onPressed: () {
                   Get.toNamed('/home');//change to navigate to thank you screen
                 },
-                color: Colors.blueAccent,
+                color: Colors.orangeAccent,
                 minWidth: 200,
-                child: Text('Login', style: TextStyle(color: Colors.white)),
+                child: Text('Register', style: TextStyle(color: Colors.white)),
               ),
 
               SizedBox(height: 20),

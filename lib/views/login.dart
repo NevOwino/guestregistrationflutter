@@ -15,7 +15,7 @@ class _LoginState extends State<Login> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Guest Registration Portal'),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.orangeAccent,
         foregroundColor: Colors.white,
         centerTitle: true,
       ),
@@ -27,7 +27,7 @@ class _LoginState extends State<Login> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('assets/daystarlogo.png', height: 200, width: 400),
+                  Image.asset('assets/guestlogo.jpg', height: 200, width: 400),
                 ],
               ),
 
@@ -41,7 +41,7 @@ class _LoginState extends State<Login> {
 
               TextField(
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.person),
+                  prefixIcon: Icon(Icons.email),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -66,9 +66,9 @@ class _LoginState extends State<Login> {
 
               MaterialButton(
                 onPressed: () {
-                  Get.toNamed('/home');//change to navigate to dashboard screen
+                  Get.toNamed('/dashboard');//change to navigate to dashboard screen
                 },
-                color: Colors.blueAccent,
+                color: Colors.orangeAccent,
                 minWidth: 200,
                 child: Text('Login', style: TextStyle(color: Colors.white)),
               ),
@@ -81,7 +81,7 @@ class _LoginState extends State<Login> {
                   GestureDetector(
                     child: Text(
                       'Dont have an account? Register',
-                      style: TextStyle(color: Colors.blueAccent),
+                      style: TextStyle(color: Colors.orangeAccent),
                     ),
                     onTap: () {
                       Get.toNamed('/register');
@@ -93,7 +93,7 @@ class _LoginState extends State<Login> {
                   GestureDetector(
                     child: Text(
                       'Forgot Password? Reset',
-                      style: TextStyle(color:Colors.blueAccent),
+                      style: TextStyle(color:Colors.orangeAccent),
                     ),
                     onTap: () {},
                   ),
