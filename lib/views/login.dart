@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+
+TextEditingController emailController = TextEditingController();
+TextEditingController passwordController = TextEditingController();
+var store = GetStorage();
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -12,6 +15,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
+    emailController.text = store.read("email")??"";
     return Scaffold(
       appBar: AppBar(
         title: Text('Guest Registration Portal'),
@@ -40,6 +44,7 @@ class _LoginState extends State<Login> {
               ),
 
               TextField(
+                controller: emailController,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.email),
                   border: OutlineInputBorder(),
@@ -56,6 +61,7 @@ class _LoginState extends State<Login> {
 
               TextField(
                 obscureText: true,
+                controller: passwordController,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.lock),
                   border: OutlineInputBorder(),
@@ -66,7 +72,8 @@ class _LoginState extends State<Login> {
 
               MaterialButton(
                 onPressed: () {
-                  Get.toNamed('/dashboard');//change to navigate to dashboard screen
+                  store.write("email", emailController.text);
+                  Get.toNamed('/dashboard');
                 },
                 color: Colors.orangeAccent,
                 minWidth: 200,
