@@ -8,5 +8,5 @@ var routes = [
   GetPage(name: "/", page: () => Login()),
   GetPage(name: "/register", page: () => Registration()),
   GetPage(name: "/home", page: () => HomeScreen()),
-  GetPage(name: "/dashboard", page: () => DashboardScreen()),
+  GetPage(name: "/dashboard", page: () => Dashboard()),
 ];
