@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+TextEditingController regNameController = TextEditingController(); TextEditingController regEmailController = TextEditingController(); TextEditingController regPhoneController = TextEditingController(); TextEditingController regIdController = TextEditingController(); TextEditingController regPasswordController = TextEditingController(); TextEditingController regConfirmPasswordController = TextEditingController();
+
 class Registration extends StatelessWidget {
   const Registration({super.key});
 
@@ -7,7 +10,7 @@ class Registration extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Guest Registration'),
+        title: Text('Guest Desk'),
         backgroundColor: Colors.orangeAccent,
         foregroundColor: Colors.white,
         centerTitle: true,
@@ -33,6 +36,7 @@ class Registration extends StatelessWidget {
               ),
 
               TextField(
+                controller: regNameController,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.person),
                   border: OutlineInputBorder(),
@@ -48,6 +52,7 @@ class Registration extends StatelessWidget {
               ),
 
               TextField(
+                controller: regEmailController,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.email),
                   border: OutlineInputBorder(),
@@ -63,6 +68,7 @@ class Registration extends StatelessWidget {
               ),
 
               TextField(
+                controller: regPhoneController,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.phone),
                   border: OutlineInputBorder(),
@@ -78,6 +84,7 @@ class Registration extends StatelessWidget {
               ),
 
               TextField(
+                controller: regIdController,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.badge),
                   border: OutlineInputBorder(),
@@ -95,6 +102,7 @@ class Registration extends StatelessWidget {
 
               TextField(
                 obscureText: true,
+                controller: regPasswordController,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.lock),
                   border: OutlineInputBorder(),
@@ -111,6 +119,7 @@ class Registration extends StatelessWidget {
 
               TextField(
                 obscureText: true,
+                controller: regConfirmPasswordController,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.lock_outline),
                   border: OutlineInputBorder(),
@@ -119,11 +128,8 @@ class Registration extends StatelessWidget {
 
               SizedBox(height: 20),
 
-              MaterialButton(
-                onPressed: () {
-                  Get.toNamed('/thankyou');//change to navigate to thank you screen
-                },
-                color: Colors.orangeAccent,
+              MaterialButton( onPressed: () { if (regNameController.text.isEmpty || regEmailController.text.isEmpty || regPhoneController.text.isEmpty || regIdController.text.isEmpty || regPasswordController.text.isEmpty || regConfirmPasswordController.text.isEmpty) { Get.snackbar("Error", "Please fill in all fields"); return; } if (regPasswordController.text != regConfirmPasswordController.text) { Get.snackbar("Error", "Passwords do not match"); return; } Get.toNamed('/thankyou'); }
+                ,color: Colors.orangeAccent,
                 minWidth: 200,
                 child: Text('Register', style: TextStyle(color: Colors.white)),
               ),
