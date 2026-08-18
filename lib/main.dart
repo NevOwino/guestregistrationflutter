@@ -20,7 +20,7 @@ class _GradingAppState extends State<GuestRegistration> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: "/",
+      initialRoute: "/register",
       getPages: routes,
     );
   }

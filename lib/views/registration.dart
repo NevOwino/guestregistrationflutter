@@ -121,12 +121,29 @@ class Registration extends StatelessWidget {
 
               MaterialButton(
                 onPressed: () {
-                  Get.toNamed('/home');//change to navigate to thank you screen
+                  Get.toNamed('/thankyou');//change to navigate to thank you screen
                 },
                 color: Colors.orangeAccent,
                 minWidth: 200,
                 child: Text('Register', style: TextStyle(color: Colors.white)),
               ),
+
+              SizedBox(height: 20),
+
+Row(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    GestureDetector(
+      child: Text(
+        'Admin Login',
+        style: TextStyle(color: Colors.orangeAccent),
+      ),
+      onTap: () {
+        Get.toNamed('/login');
+      },
+    ),
+  ],
+),
 
               SizedBox(height: 20),
 

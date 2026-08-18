@@ -92,7 +92,7 @@ class _LoginState extends State<Login> {
                       style: TextStyle(color: Colors.orangeAccent),
                     ),
                     onTap: () {
-                      Get.toNamed('/register');
+                      Get.toNamed('/adminsignup');
                     },
                   ),
 
