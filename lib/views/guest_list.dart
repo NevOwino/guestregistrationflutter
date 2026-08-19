@@ -14,7 +14,7 @@ class GuestList extends StatefulWidget {
       }];
   
     void deleteGuest(int index) { showDialog( context: context, builder: (context) { return AlertDialog( title: Text('Delete Guest'), content: Text('Remove ${guests[index]['name']} from the list?'), actions: [ TextButton( onPressed: () => Get.back(), child: Text('Cancel', style: TextStyle(color: Colors.grey)), ), TextButton( onPressed: () { setState(() { guests.removeAt(index); }); Get.back(); }, child: Text('Delete', style: TextStyle(color: Colors.red)), ), ], ); }, ); } 
-    
+  @override
    Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

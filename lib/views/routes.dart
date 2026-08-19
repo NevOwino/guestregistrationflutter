@@ -2,9 +2,9 @@ import 'package:mobileapp/views/login.dart';
 import 'package:mobileapp/views/registration.dart';
 import 'package:mobileapp/views/dashboard.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:mobileapp/views/guest-list.dart';
-import 'package:mobileapp/views/thank-you.dart';
-import 'package:mobileapp/views/admin-signup.dart';
+import 'package:mobileapp/views/guest_list.dart';
+import 'package:mobileapp/views/thank_you.dart';
+import 'package:mobileapp/views/admin_signup.dart';
 
 var routes = [
   GetPage(name: "/", page: () => Login()),

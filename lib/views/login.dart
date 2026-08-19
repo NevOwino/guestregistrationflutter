@@ -71,11 +71,7 @@ class _LoginState extends State<Login> {
 
               SizedBox(height: 20),
 
-              MaterialButton(
-                onPressed: () {
-                  store.write("email", emailController.text);
-                  Get.toNamed('/dashboard');
-                },
+              MaterialButton( onPressed: () { if (emailController.text.isEmpty || passwordController.text.isEmpty) { Get.snackbar("Error", "Please fill in all fields"); return; } store.write("email", emailController.text); Get.toNamed('/dashboard'); },
                 color: Colors.orangeAccent,
                 minWidth: 200,
                 child: Text('Login', style: TextStyle(color: Colors.white)),

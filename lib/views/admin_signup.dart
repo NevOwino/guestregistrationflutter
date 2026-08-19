@@ -80,7 +80,18 @@ class AdminSignup extends StatelessWidget {
 
               MaterialButton(
                 onPressed: () {
-                  Get.toNamed('/dashboard');
+                  if (adminNameController.text.isEmpty ||
+                      adminEmailController.text.isEmpty ||
+                      adminPasswordController.text.isEmpty ||
+                      adminConfirmPasswordController.text.isEmpty) {
+                    Get.snackbar("Error", "Please fill in all fields");
+                    return;
+                  }
+                  if (adminPasswordController.text != adminConfirmPasswordController.text) {
+                    Get.snackbar("Error", "Passwords do not match");
+                    return;
+                  }
+                  Get.toNamed('/login');
                 },
                 color: Colors.orangeAccent,
                 minWidth: 200,
