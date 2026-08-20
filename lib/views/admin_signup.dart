@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:mobileapp/views/api.dart';
 
 TextEditingController adminNameController = TextEditingController();
 TextEditingController adminEmailController = TextEditingController();
@@ -78,25 +81,36 @@ class AdminSignup extends StatelessWidget {
 
               SizedBox(height: 20),
 
-              MaterialButton(
-                onPressed: () {
-                  if (adminNameController.text.isEmpty ||
-                      adminEmailController.text.isEmpty ||
-                      adminPasswordController.text.isEmpty ||
-                      adminConfirmPasswordController.text.isEmpty) {
-                    Get.snackbar("Error", "Please fill in all fields");
-                    return;
-                  }
-                  if (adminPasswordController.text != adminConfirmPasswordController.text) {
-                    Get.snackbar("Error", "Passwords do not match");
-                    return;
-                  }
-                  Get.toNamed('/login');
-                },
-                color: Colors.orangeAccent,
-                minWidth: 200,
-                child: Text('Sign Up', style: TextStyle(color: Colors.white)),
-              ),
+              MaterialButton(onPressed: () async {
+  if (adminNameController.text.isEmpty ||
+      adminEmailController.text.isEmpty ||
+      adminPasswordController.text.isEmpty ||
+      adminConfirmPasswordController.text.isEmpty) {
+    Get.snackbar("Error", "Please fill in all fields");
+    return;
+  }
+  if (adminPasswordController.text != adminConfirmPasswordController.text) {
+    Get.snackbar("Error", "Passwords do not match");
+    return;
+  }
+
+  var response = await http.post(
+    Uri.parse("$baseUrl/admin-signup.php"),
+    body: {
+      "name": adminNameController.text,
+      "email": adminEmailController.text,
+      "password": adminPasswordController.text,
+    },
+  );
+
+  var responseBody = jsonDecode(response.body);
+
+  if (responseBody['success'] == 1) {
+    Get.toNamed('/login');
+  } else {
+    Get.snackbar("Error", "Signup failed, please try again");
+  }
+  },),
 
               SizedBox(height: 20),
 

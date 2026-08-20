@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:mobileapp/views/api.dart';
 
 TextEditingController emailController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
@@ -71,11 +74,31 @@ class _LoginState extends State<Login> {
 
               SizedBox(height: 20),
 
-              MaterialButton( onPressed: () { if (emailController.text.isEmpty || passwordController.text.isEmpty) { Get.snackbar("Error", "Please fill in all fields"); return; } store.write("email", emailController.text); Get.toNamed('/dashboard'); },
-                color: Colors.orangeAccent,
-                minWidth: 200,
-                child: Text('Login', style: TextStyle(color: Colors.white)),
-              ),
+              MaterialButton(
+                onPressed: () async {
+    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+      Get.snackbar("Error", "Please fill in all fields");
+      return;
+    }
+
+    var response = await http.get(
+      Uri.parse("$baseUrl/login.php?email=${emailController.text}&password=${passwordController.text}"),
+    );
+
+    var responseBody = jsonDecode(response.body);
+
+    if (responseBody['success'] == 1) {
+      store.write("email", emailController.text);
+      Get.toNamed('/dashboard');
+    } else {
+      Get.snackbar("Error", "Invalid email or password");
+    }
+  },
+  color: Colors.orangeAccent,
+  minWidth: 200,
+  child: Text('Login', style: TextStyle(color: Colors.white)),
+),
+
 
               SizedBox(height: 20),
 

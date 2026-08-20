@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:mobileapp/views/api.dart';
 
 TextEditingController regNameController = TextEditingController(); TextEditingController regEmailController = TextEditingController(); TextEditingController regPhoneController = TextEditingController(); TextEditingController regIdController = TextEditingController(); TextEditingController regPasswordController = TextEditingController(); TextEditingController regConfirmPasswordController = TextEditingController();
 
@@ -128,7 +131,40 @@ class Registration extends StatelessWidget {
 
               SizedBox(height: 20),
 
-              MaterialButton( onPressed: () { if (regNameController.text.isEmpty || regEmailController.text.isEmpty || regPhoneController.text.isEmpty || regIdController.text.isEmpty || regPasswordController.text.isEmpty || regConfirmPasswordController.text.isEmpty) { Get.snackbar("Error", "Please fill in all fields"); return; } if (regPasswordController.text != regConfirmPasswordController.text) { Get.snackbar("Error", "Passwords do not match"); return; } Get.toNamed('/thankyou'); }
+              MaterialButton( onPressed: () async {
+                  if (regNameController.text.isEmpty ||
+                      regEmailController.text.isEmpty ||
+                      regPhoneController.text.isEmpty ||
+                      regIdController.text.isEmpty ||
+                      regPasswordController.text.isEmpty ||
+                      regConfirmPasswordController.text.isEmpty) {
+                    Get.snackbar("Error", "Please fill in all fields");
+                    return;
+                  }
+                  if (regPasswordController.text != regConfirmPasswordController.text) {
+                    Get.snackbar("Error", "Passwords do not match");
+                    return;
+                  }
+
+                  var response = await http.post(
+                    Uri.parse("$baseUrl/register_guest.php"),
+                    body: {
+                      "full_name": regNameController.text,
+                      "email": regEmailController.text,
+                      "phone": regPhoneController.text,
+                      "national_id": regIdController.text,
+                      "password": regPasswordController.text,
+                    },
+                  );
+
+                  var responseBody = jsonDecode(response.body);
+
+                  if (responseBody['success'] == 1) {
+                    Get.toNamed('/thankyou');
+                  } else {
+                    Get.snackbar("Error", "Registration failed, please try again");
+                  }
+                }
                 ,color: Colors.orangeAccent,
                 minWidth: 200,
                 child: Text('Register', style: TextStyle(color: Colors.white)),
